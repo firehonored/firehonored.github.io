@@ -22,49 +22,81 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* EMBER PARTICLES */
+        .embers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ember {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #aa533b;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: drift 6s linear infinite;
+            filter: drop-shadow(0 0 6px #aa533b);
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(-10vh) scale(1); opacity: 0.8; }
+            100% { transform: translateY(110vh) scale(0.4); opacity: 0; }
         }
 
         /* Floating banner */
         .top-banner {
-            width: 90%;
-            max-width: 600px;
-            margin-top: 30px;
+            width: 75%;
+            max-width: 480px;
+            margin-top: 25px;
             animation: float 4s ease-in-out infinite;
-            filter: drop-shadow(0 0 12px #aa533b);
+            filter: drop-shadow(0 0 10px #aa533b);
+            z-index: 2;
         }
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
 
         /* Navigation container */
         .nav-links {
-            margin-top: 40px;
-            width: 90%;
-            max-width: 600px;
+            margin-top: 30px;
+            width: 85%;
+            max-width: 520px;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 18px;
+            gap: 14px;
+            z-index: 2;
         }
 
         /* Buttons */
         .nav-btn {
-            padding: 14px 20px;
+            padding: 10px 16px;
             border: 2px solid #aa533b;
             color: #aa533b;
             text-decoration: none;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-family: 'Cinzel', serif;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             border-radius: 6px;
             transition: 0.4s ease;
             position: relative;
             overflow: hidden;
         }
 
-        /* Flame flicker effect */
+        /* Flame flicker */
         .nav-btn::before {
             content: "";
             position: absolute;
@@ -74,23 +106,23 @@
             height: 300%;
             background: radial-gradient(circle, rgba(255,120,60,0.25) 0%, rgba(0,0,0,0) 70%);
             animation: flame 3s infinite ease-in-out;
-            opacity: 0.4;
+            opacity: 0.35;
         }
 
         @keyframes flame {
             0% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(8deg) scale(1.1); }
+            50% { transform: rotate(6deg) scale(1.08); }
             100% { transform: rotate(0deg) scale(1); }
         }
 
         .nav-btn:hover {
             background-color: #aa533b;
             color: #1b0d0d;
-            transform: scale(1.05);
-            box-shadow: 0 0 18px #aa533b;
+            transform: scale(1.04);
+            box-shadow: 0 0 14px #aa533b;
         }
 
-        /* Mobile adjustments */
+        /* Mobile: two columns on wider screens */
         @media (min-width: 600px) {
             .nav-links {
                 grid-template-columns: 1fr 1fr;
@@ -101,6 +133,9 @@
 
 <body>
 
+    <!-- EMBERS -->
+    <div class="embers" id="embers"></div>
+
     <!-- Floating top banner -->
     <img src="https://i.postimg.cc/WzdhnQGn/promo-2.gif" class="top-banner" alt="Zuko Banner">
 
@@ -108,13 +143,35 @@
     <div class="nav-links">
         <a href="/biography/" class="nav-btn">BIOGRAPHY</a>
         <a href="/rules/" class="nav-btn">RULES</a>
-        <a href="/biography/" class="nav-btn">BIO</a>
+        <a href="/muses/" class="nav-btn">MUSES</a>
         <a href="/mains/" class="nav-btn">MAINS</a>
         <a href="/verses/" class="nav-btn">VERSES</a>
         <a href="/gallery/" class="nav-btn">GALLERY</a>
         <a href="/headcanons/" class="nav-btn">HEADCANONS</a>
         <a href="/contact/" class="nav-btn">CONTACT</a>
     </div>
+
+    <script>
+        /* Generate drifting embers */
+        const emberContainer = document.getElementById("embers");
+
+        function createEmber() {
+            const ember = document.createElement("div");
+            ember.classList.add("ember");
+
+            ember.style.left = Math.random() * 100 + "vw";
+            ember.style.animationDuration = 5 + Math.random() * 4 + "s";
+            ember.style.opacity = 0.4 + Math.random() * 0.6;
+
+            emberContainer.appendChild(ember);
+
+            setTimeout(() => {
+                ember.remove();
+            }, 9000);
+        }
+
+        setInterval(createEmber, 300);
+    </script>
 
 </body>
 </html>
