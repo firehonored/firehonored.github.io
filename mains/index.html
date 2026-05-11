@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mains — Firelord Zuko</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/j2pB17fb/thing-carrd.png">
+
+    <!-- Accent Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1b0d0d;
+            color: #ffffff;
+            font-family: "Courier New", monospace;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* EMBERS */
+        .embers {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ember {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #aa533b;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: drift 6s linear infinite;
+            filter: drop-shadow(0 0 6px #aa533b);
+        }
+
+        @keyframes drift {
+            0% { transform: translateY(-10vh) scale(1); opacity: 0.8; }
+            100% { transform: translateY(110vh) scale(0.4); opacity: 0; }
+        }
+
+        /* PAGE WRAPPER */
+        .content-wrapper {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 60px;
+            padding-bottom: 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* TITLE */
+        h1 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #aa533b;
+            margin-bottom: 40px;
+            font-size: 2.2rem;
+        }
+
+        /* GRID */
+        .mains-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .main-entry {
+            margin-bottom: 20px;
+        }
+
+        .main-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: #aa533b;
+            margin-bottom: 4px;
+        }
+
+        .main-user {
+            font-size: 1rem;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        /* RETURN BUTTON */
+        .return-fire {
+            width: 120px;
+            margin: 60px auto 0;
+            display: block;
+            cursor: pointer;
+            transition: 0.4s ease;
+            filter: drop-shadow(0 0 10px #aa533b);
+        }
+
+        .return-fire:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 16px #aa533b);
+        }
+
+        /* MOBILE */
+        @media (max-width: 750px) {
+            .mains-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- EMBERS -->
+    <div class="embers" id="embers"></div>
+
+    <div class="content-wrapper">
+
+        <h1>MAINS</h1>
+
+        <!-- TWO COLUMN GRID -->
+        <div class="mains-grid">
+
+            <div>
+                <div class="main-entry">
+                    <div class="main-name">ELSA OF ARENDELLE</div>
+                    <div class="main-user">WINTERSOVEREIGN — by jess</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">AANG</div>
+                    <div class="main-user">AIRLEGACY — by jess</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">KATARA</div>
+                    <div class="main-user">DROPLCT — by taea</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">SOKKA</div>
+                    <div class="main-user">THATBOOMERANGGUY — by jess</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+            </div>
+
+            <div>
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+
+                <div class="main-entry">
+                    <div class="main-name">CHARACTER NAME HERE</div>
+                    <div class="main-user">URL HERE — by name here</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RETURN TO NAV -->
+        <a href="/nav/">
+            <img src="https://i.postimg.cc/j2pB17fb/thing-carrd.png" class="return-fire" alt="Return to Nav">
+        </a>
+
+    </div>
+
+    <script>
+        /* Generate drifting embers */
+        const emberContainer = document.getElementById("embers");
+
+        function createEmber() {
+            const ember = document.createElement("div");
+            ember.classList.add("ember");
+
+            ember.style.left = Math.random() * 100 + "vw";
+            ember.style.animationDuration = 5 + Math.random() * 4 + "s";
+            ember.style.opacity = 0.4 + Math.random() * 0.6;
+
+            emberContainer.appendChild(ember);
+
+            setTimeout(() => {
+                ember.remove();
+            }, 9000);
+        }
+
+        setInterval(createEmber, 300);
+    </script>
+
+</body>
+</html>
